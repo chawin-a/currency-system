@@ -1,0 +1,51 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: chawin
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: currency-system
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: currency-system
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  balance:
+    handler: src/handler.balance
+    environment:
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DATABASE: postgres
+    events:
+      - httpApi:
+          path: /balance
+          method: get
+  transfer:
+    handler: src/handler.transfer
+    environment:
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DATABASE: postgres
+    events:
+      - httpApi:
+          path: /transfer
+          method: post
+  transactions:
+    handler: src/handler.transactions
+    environment:
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DATABASE: postgres
+    events:
+      - httpApi:
+          path: /transactions
+          method: get
+
+plugins:
+  - serverless-offline
