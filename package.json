@@ -7,6 +7,8 @@
     "node": "^22.0.0"
   },
   "scripts": {
+    "migrate:up": "DATABASE_URL=postgres://postgres:12345678@localhost:5432/postgres node-pg-migrate up",
+    "migrate:down": "DATABASE_URL=postgres://postgres:12345678@localhost:5432/postgres node-pg-migrate down",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -16,13 +18,16 @@
     "@types/aws-lambda": "^8.10.147",
     "@types/node": "^22.10.5",
     "esbuild": "^0.24.2",
-    "postgres": "^3.4.5",
+    "node-pg-migrate": "^7.8.0",
     "serverless": "^4.4.18",
     "serverless-offline": "^14.4.0",
     "tsx": "^3.12.7",
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@aws-lambda-powertools/logger": "^2.12.0"
+    "@aws-lambda-powertools/logger": "^2.12.0",
+    "@types/pg": "^8.11.10",
+    "pg": "^8.13.1",
+    "postgres-date": "^2.1.0"
   }
 }
