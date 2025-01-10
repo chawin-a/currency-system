@@ -31,6 +31,7 @@ This section gathers the idea that should improve in the future.
 - Handle error & Logging more properly
 - Add retry mechanicsm for transfer
   - Challenge: Ensuring that the retry process prevents double-spending issues.
+- Add more unittest
 
 ### System Diagram
 The diagram below provides a high-level overview of the system, showcasing the current state ("as-is") and planned future state ("to-be") of the project:
@@ -218,6 +219,12 @@ the result from the command should be like this.
    └────────────────────────────────────────────────────────────────────────────────┘
 
 Server ready: http://localhost:3000 🚀
+```
+
+### Run unittest
+To run unittest, run the following command:
+```
+npm test
 ```
 
 ### Test API
