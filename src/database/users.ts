@@ -1,5 +1,5 @@
-import { logger } from '../logger.js'
-import pools from './db.js'
+import { logger } from '../logger'
+import pools from './db'
 
 export interface User {
   user_id: number

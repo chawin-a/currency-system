@@ -1,4 +1,4 @@
-import pools from './db.js'
+import pools from './db'
 
 export interface UserBalance {
   user_id: number

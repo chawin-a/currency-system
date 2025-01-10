@@ -1,10 +1,21 @@
-import pools from './db.js'
-import { User } from './users.js'
-import { logger } from '../logger.js'
+import pools from './db'
+import { User } from './users'
+import { logger } from '../logger'
 
 export interface Transaction {
   transaction_id: number
   transaction_status: string
+  created_at: string
+  updated_at: string
+}
+
+export interface TransactionEntry {
+  entry_id: number
+  transaction_id: number
+  user_id: number
+  amount: number
+  is_debit: boolean
+  transaction_entry_status: string
   created_at: string
   updated_at: string
 }
@@ -87,7 +98,7 @@ export async function createTransaction(sender: User, recipient: User, amount: n
   return res.rows[0] as Transaction
 }
 
-export async function listUserTransactions(id: number, page: number, limit: number): Promise<User[]> {
+export async function listUserTransactions(id: number, page: number, limit: number): Promise<TransactionEntry[]> {
   const sql = await pools.connect()
   const res = await pools.query(`
     SELECT
@@ -105,5 +116,5 @@ export async function listUserTransactions(id: number, page: number, limit: numb
     LIMIT $2 OFFSET $3
   `, [id, limit, (page - 1) * limit])
   await sql.release();
-  return res.rows as User[]
+  return res.rows as TransactionEntry[]
 }
